@@ -1,23 +1,36 @@
 export type NavItems = {
   name: string;
-  link: string;
-}
+  route: string;
+  metaData: {
+    search?: string;
+  };
+};
 
 export const navItems: NavItems[] = [
   {
     name: "Home",
-    link: "",
+    route: "/home",
+    metaData: {},
   },
   {
     name: "Weather",
-    link: "",
+    route: "/home",
+    metaData: {
+      search: "weather",
+    },
   },
   {
     name: "Global",
-    link: "",
+    route: "/news",
+    metaData: {
+      search: "global",
+    },
   },
   {
     name: "Local",
-    link: "",
+    route: "/news",
+    metaData: {
+      search: "local",
+    },
   },
 ];

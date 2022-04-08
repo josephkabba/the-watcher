@@ -9,8 +9,8 @@ export default function Footer() {
           <span>All right received</span>
         </div>
 
-        <div>
-          <div className="flex justify-around flex-row">
+        <div className="sm:mt-0 mt-5">
+          <div className="flex justify-start flex-row">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="w-full mt-16">
+      <div className="flex flex-row w-full mt-16">
         <h1 className="text-left">Copyright since 2022</h1>
       </div>
     </div>

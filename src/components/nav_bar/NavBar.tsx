@@ -11,9 +11,15 @@ export default function NavBar({ links }: Props): JSX.Element {
       <h1 className="text-2xl">The Watcher</h1>
 
       <div>
-        {links.map(({ name, link }) => {
+        {links.map(({ name, route, metaData }) => {
           return (
-            <Link href={link}>
+            <Link
+              href={{
+                pathname: route,
+                query: { slug: metaData.search },
+              }}
+              key={name}
+            >
               <a className="text-black text-lg hover:text-blue-500 px-2 focus:text-purple-500">
                 {name}
               </a>

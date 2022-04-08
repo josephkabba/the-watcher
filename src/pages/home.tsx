@@ -1,9 +1,26 @@
 import Image from "next/image";
 import homeImage from "../../public/undraw_newspaper_k-72-w.svg";
-import CardModel from "../components/card/Card";
+import Card from "../components/card/Card";
 import { listCardItem } from "../../test_data/test_data";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+const id = "weather";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(router.query);
+    if (router.query.slug === "weather") {
+      const scrollToId = document.getElementById(id)!!.offsetTop;
+      window.scrollTo({
+        left: 0,
+        top: scrollToId,
+        behavior: "smooth"
+      });
+    }
+  }, [router.query.slug]);
   return (
     <>
       <div className="flex sm:flex-row flex-col sm:text-left text-center justify-between pb-5 pt-2 w-full">
@@ -36,7 +53,7 @@ export default function Home() {
 
         <div className="flex sm:flex-row flex-col justify-between mt-9">
           {listCardItem.map((item) => (
-            <CardModel {...item} />
+            <Card {...item} />
           ))}
         </div>
 
@@ -46,12 +63,12 @@ export default function Home() {
 
         <div className="flex sm:flex-row flex-col justify-between mt-9">
           {listCardItem.map((item) => (
-            <CardModel {...item} />
+            <Card {...item} />
           ))}
         </div>
       </div>
 
-      <hr className="bg-gray-400 h-0.5" />
+      <hr id={id} className="bg-gray-400 h-0.5" />
 
       <div className="w-full flex mt-5 flex-col">
         <div className="flex sm:flex-row justify-between flex-col">
