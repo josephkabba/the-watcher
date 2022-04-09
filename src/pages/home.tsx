@@ -1,4 +1,3 @@
-import Image from "next/image";
 import homeImage from "../../public/undraw_newspaper_k-72-w.svg";
 import Card from "../components/card/Card";
 import { listCardItem } from "../../test_data/test_data";
@@ -41,7 +40,7 @@ export default function Home() {
           </p>
         </div>
 
-        <Image src={homeImage} lo alt="home image" width={356} height={200} />
+        <img src={homeImage} alt="home image" width={356} height={200} />
       </div>
 
       <hr className="bg-gray-400 h-0.5" />
