@@ -3,6 +3,7 @@ import Card from "../components/card/Card";
 import { listCardItem } from "../../test_data/test_data";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Image from "next/image";
 
 const id = "weather";
 
@@ -16,7 +17,7 @@ export default function Home() {
       window.scrollTo({
         left: 0,
         top: scrollToId,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   }, [router.query.slug]);
@@ -40,7 +41,7 @@ export default function Home() {
           </p>
         </div>
 
-        <img src={homeImage} alt="home image" width={356} height={200} />
+        <Image src={homeImage} alt="home image" width={356} height={200} />
       </div>
 
       <hr className="bg-gray-400 h-0.5" />
