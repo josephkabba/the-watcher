@@ -21,14 +21,14 @@ export const navItems: NavItems[] = [
   },
   {
     name: "Global",
-    route: "/news",
+    route: "/global",
     metaData: {
       search: "global",
     },
   },
   {
     name: "Local",
-    route: "/news",
+    route: "/local",
     metaData: {
       search: "local",
     },

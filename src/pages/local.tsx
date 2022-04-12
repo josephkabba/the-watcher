@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useRouter } from "next/router";
-import { GetServerSideProps } from "next/types";
+import { GetServerSideProps, GetStaticProps } from "next/types";
 import { useCallback, useEffect, useState } from "react";
 import Card from "../components/card/Card";
 import { Article } from "../models/models";
@@ -10,7 +10,7 @@ type Props = {
   articles: Article[];
 };
 
-export default function News({ articles }: Props): JSX.Element {
+export default function LocalNews({ articles }: Props): JSX.Element {
   const router = useRouter();
   const [Title, setTitle] = useState("");
   const [Articles, setArticles] = useState(articles);
@@ -58,7 +58,7 @@ export default function News({ articles }: Props): JSX.Element {
       </svg>
 
       <div className="flex sm:flex-row flex-col sm:justify-between w-full justify-start py-10">
-        <h1 className="text-3xl font-light">{`${Title} news`}</h1>
+        <h1 className="text-3xl font-light">{`Local news`}</h1>
 
         <div className="flex sm:mt-0 mt-5 flex-row border-2 w-72 border-black px-4 rounded-lg text-gray-600">
           <input
@@ -97,18 +97,10 @@ export default function News({ articles }: Props): JSX.Element {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  let type = "l";
-
-  if (context.query.type === "local") {
-    type = "l";
-  } else {
-    type = "g";
-  }
-
+export const getStaticProps: GetStaticProps = async (context) => {
   const options: AxiosRequestConfig = {
     method: "GET",
-    url: `${SITE_URL}/api/articles?type=${type}&limit=25`,
+    url: `${SITE_URL}/api/articles?type=l&limit=25`,
     params: {},
     headers: {},
   };
