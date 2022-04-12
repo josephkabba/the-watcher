@@ -32,6 +32,7 @@ export default async function handler(
       .execute();
     await execute("UG", database);
     await execute("US", database);
+    await database.destroy();
     res.status(200).send({
       statusCode: 200,
       response: "task complete",
@@ -67,7 +68,7 @@ export default async function handler(
 //       .getRepository(ArticleModel)
 //       .createQueryBuilder("article")
 //       .getCount();
-
+//     await database.destroy();
 //     console.log(count);
 //     console.log("task complete");
 //   } catch (err: any) {
