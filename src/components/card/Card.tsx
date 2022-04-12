@@ -32,7 +32,7 @@ export default function Card({ article }: CardModel): JSX.Element {
         </h1>
 
         <div className="mt-2">
-          <Link href={`/${encodeURIComponent(`${article.id}`)}`}>
+          <Link href={`/${article.id}`}>
             <a className="text-black font-extralight text-base hover:text-blue-500 focus:text-purple-500">
               Read more {">"}{" "}
             </a>
