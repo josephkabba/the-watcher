@@ -22,15 +22,11 @@ export const navItems: NavItems[] = [
   {
     name: "Global",
     route: "/global",
-    metaData: {
-      search: "global",
-    },
+    metaData: {},
   },
   {
     name: "Local",
     route: "/local",
-    metaData: {
-      search: "local",
-    },
+    metaData: {},
   },
 ];

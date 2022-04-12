@@ -16,6 +16,7 @@ export default function NavBar({ links }: Props): JSX.Element {
             <Link
               href={{
                 pathname: route,
+                query: { key: metaData.search },
               }}
               key={name}
             >
