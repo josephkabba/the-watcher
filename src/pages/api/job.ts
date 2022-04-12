@@ -13,7 +13,6 @@ const execute = async (country: "UG" | "US", database: DataSource) => {
       country === "US"
         ? mapStoryToArticle(articles[i], "g")
         : mapStoryToArticle(articles[i], "l");
-    console.log(article);
     const model = new ArticleModel(article);
     const repo = await database.manager.save(model);
   }
@@ -42,3 +41,36 @@ export default async function handler(
     res.status(500).send({ statusCode: 500, err });
   }
 }
+
+//test
+
+// (async () => {
+//   try {
+//     const database = await getDatabase();
+//     await database
+//       .getRepository(ArticleModel)
+//       .createQueryBuilder("article")
+//       .delete()
+//       .from(ArticleModel)
+//       .execute();
+
+//     let count = await database
+//       .getRepository(ArticleModel)
+//       .createQueryBuilder("article")
+//       .getCount();
+
+//     console.log(count);
+//     await execute("UG", database);
+//     await execute("US", database);
+
+//     count = await database
+//       .getRepository(ArticleModel)
+//       .createQueryBuilder("article")
+//       .getCount();
+
+//     console.log(count);
+//     console.log("task complete");
+//   } catch (err: any) {
+//     console.log(err);
+//   }
+// })();
