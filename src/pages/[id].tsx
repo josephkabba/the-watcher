@@ -62,30 +62,45 @@ export default function Detail({ article }: Props): JSX.Element {
   );
 }
 
-// export async function getStaticPaths() {
+export async function getStaticPaths() {
+  const options: AxiosRequestConfig = {
+    method: "GET",
+    url: `${SITE_URL}/api`,
+    params: {},
+    headers: {},
+  };
+
+  const response = await axios.request(options);
+
+  const paths = response.data.data.map((item: any) => ({
+    params: { id: `${item.id}` },
+  }));
+
+  return {
+    paths: paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  const options: AxiosRequestConfig = {
+    method: "GET",
+    url: `${SITE_URL}/api/article?id=${params.id}`,
+    params: {},
+    headers: {},
+  };
+
+  const response = await axios.request(options);
+
+  const article: Article = response.data.data[0];
+
+  return { props: { article }, revalidate: 82800 };
+}
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const options: AxiosRequestConfig = {
 //     method: "GET",
-//     url: `${SITE_URL}/api`,
-//     params: {},
-//     headers: {},
-//   };
-
-//   const response = await axios.request(options);
-
-//   const paths = response.data.data.map((item: any) => ({
-//     params: { id: `${item.id}` },
-//   }));
-
-//   return {
-//     paths: paths,
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps({ params }: { params: { id: string } }) {
-//   const options: AxiosRequestConfig = {
-//     method: "GET",
-//     url: `${SITE_URL}/api/article?id=${params.id}`,
+//     url: `${SITE_URL}/api/article?id=${context.query.id}`,
 //     params: {},
 //     headers: {},
 //   };
@@ -95,19 +110,4 @@ export default function Detail({ article }: Props): JSX.Element {
 //   const article: Article = response.data.data[0];
 
 //   return { props: { article } };
-//}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const options: AxiosRequestConfig = {
-    method: "GET",
-    url: `${SITE_URL}/api/article?id=${context.query.id}`,
-    params: {},
-    headers: {},
-  };
-
-  const response = await axios.request(options);
-
-  const article: Article = response.data.data[0];
-
-  return { props: { article } };
-};
+// };
