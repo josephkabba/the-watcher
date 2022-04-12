@@ -6,7 +6,7 @@ import Image from "next/image";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { SITE_URL } from "../utils/utils";
 import { Article } from "../models/models";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { WeatherRootObject } from "../models/weather";
 import moment from "moment";
 
@@ -181,7 +181,7 @@ export default function Home({ local, global }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const options: AxiosRequestConfig[] = [
     {
       method: "GET",
