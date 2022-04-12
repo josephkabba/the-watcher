@@ -61,7 +61,7 @@ export default function Home({ local, global }: Props) {
 
   useEffect(() => {
     console.log(router.query);
-    if (router.query.type === "weather") {
+    if (router.query.key === "weather") {
       const scrollToId = document.getElementById(id)!!.offsetTop;
       window.scrollTo({
         left: 0,
@@ -69,7 +69,7 @@ export default function Home({ local, global }: Props) {
         behavior: "smooth",
       });
     }
-  }, [router.query.type]);
+  }, [router.query.key]);
   return (
     <>
       <div className="flex sm:flex-row flex-col sm:text-left text-center justify-between pb-5 pt-2 w-full">
