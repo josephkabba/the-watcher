@@ -1,18 +1,39 @@
+import axios, { AxiosRequestConfig } from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { GetServerSideProps } from "next/types";
+import { useCallback, useEffect, useState } from "react";
 import { listCardItem } from "../../test_data/test_data";
 import Card from "../components/card/Card";
-import { toTitle } from "../utils/utils";
+import { Article } from "../models/models";
+import { SITE_URL, toTitle } from "../utils/utils";
 
-export default function News(): JSX.Element {
+type Props = {
+  articles: Article[];
+};
+
+export default function News({ articles }: Props): JSX.Element {
   const router = useRouter();
-  const [ Title, setTitle ] = useState("");
+  const [Title, setTitle] = useState("");
+  const [Articles, setArticles] = useState(articles);
+  const [SearchText, setSearchText] = useState("");
+
+  const search = useCallback(
+    (text: string) => {
+      const values = articles.filter((article) => {
+        return article.title.toLowerCase().includes(text.toLowerCase());
+      });
+
+      setArticles(values);
+    },
+    [SearchText]
+  );
 
   useEffect(() => {
-    if (
-      router.query.slug !== undefined &&
-      router.query.slug !== null
-    ) {
+    search(SearchText);
+  }, [SearchText]);
+
+  useEffect(() => {
+    if (router.query.slug !== undefined && router.query.slug !== null) {
       const text = router.query.slug as string;
       setTitle(toTitle(text));
     }
@@ -28,7 +49,7 @@ export default function News(): JSX.Element {
         viewBox="0 0 24 24"
         stroke="currentColor"
         strokeWidth={2}
-        onClick={()=>router.back()}
+        onClick={() => router.back()}
       >
         <path
           strokeLinecap="round"
@@ -45,6 +66,7 @@ export default function News(): JSX.Element {
             className=" bg-white h-10 pr-5  text-sm focus:outline-none"
             type="search"
             name="search"
+            onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search"
           />
           <button type="submit">
@@ -67,11 +89,36 @@ export default function News(): JSX.Element {
         </div>
       </div>
 
-      <div className="flex sm:flex-row flex-col justify-between mt-9">
-        {listCardItem.map((item) => (
-          <Card {...item} />
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-4 mt-9">
+        {Articles.map((item) => (
+          <Card key={item.id} article={item} />
         ))}
       </div>
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  let type = "l";
+
+  if (context.query.type === "local") {
+    type = "l";
+  } else {
+    type = "g";
+  }
+
+  const options: AxiosRequestConfig = {
+    method: "GET",
+    url: `${SITE_URL}/api/articles?type=${type}&limit=25`,
+    params: {},
+    headers: {},
+  };
+
+  const response = await axios.request(options);
+
+  const articles: Article[] = response.data.data;
+
+  return {
+    props: { articles }, // will be passed to the page component as props
+  };
+};

@@ -5,7 +5,7 @@ export default function Footer() {
 
       <div className="flex flex-col mt-2 sm:flex-row justify-between place-content-between w-full">
         <div className="flex flex-col">
-          <span>This site is by group 9</span>
+          <span>This site is by group 2</span>
           <span>All right received</span>
         </div>
 
@@ -67,8 +67,18 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-row w-full mt-16">
+      <div className="flex sm:flex-row sm:justify-between flex-col w-full mt-16">
         <h1 className="text-left">Copyright since 2022</h1>
+        <h1 className="text-left">
+          Tribute to{" "}
+          <a
+            className="text-blue-500 font-bold hover:text-purple-500"
+            href="https://newscatcherapi.com/"
+            target="_blank"
+          >
+            News Catcher api
+          </a>
+        </h1>
       </div>
     </div>
   );
