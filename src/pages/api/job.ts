@@ -25,7 +25,12 @@ export default async function handler(
 ) {
   try {
     const database = await getDatabase();
-    database.getRepository(ArticleModel).createQueryBuilder().delete();
+    await database
+      .getRepository(ArticleModel)
+      .createQueryBuilder("article")
+      .delete()
+      .from(ArticleModel)
+      .execute();
     await execute("UG", database);
     await execute("US", database);
     res.status(200).send({
