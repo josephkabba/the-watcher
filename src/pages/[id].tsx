@@ -65,7 +65,7 @@ export default function Detail({ article }: Props): JSX.Element {
 export async function getStaticPaths() {
   const options: AxiosRequestConfig = {
     method: "GET",
-    url: `${SITE_URL}/`,
+    url: `${SITE_URL}/api`,
     params: {},
     headers: {},
   };
