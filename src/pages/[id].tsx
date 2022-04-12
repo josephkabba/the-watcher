@@ -95,7 +95,7 @@ export default function Detail({ article }: Props): JSX.Element {
 //   const article: Article = response.data.data[0];
 
 //   return { props: { article } };
-}
+//}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const options: AxiosRequestConfig = {
