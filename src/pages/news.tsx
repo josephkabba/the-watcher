@@ -2,7 +2,6 @@ import axios, { AxiosRequestConfig } from "axios";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next/types";
 import { useCallback, useEffect, useState } from "react";
-import { listCardItem } from "../../test_data/test_data";
 import Card from "../components/card/Card";
 import { Article } from "../models/models";
 import { SITE_URL, toTitle } from "../utils/utils";

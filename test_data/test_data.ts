@@ -1,6 +1,6 @@
 import { CardModel } from "../src/components/card/Card";
 
-export const listCardItem: CardModel[] = [
+export const listCardItem = [
   {
     label: "Label for new",
     date: "19/4/2022",

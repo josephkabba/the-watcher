@@ -1,7 +1,7 @@
 import homeImage from "../../public/undraw_newspaper_k-72-w.svg";
 import Card from "../components/card/Card";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { SITE_URL } from "../utils/utils";
@@ -160,8 +160,8 @@ export default function Home({ local, global }: Props) {
       <div className="w-full mt-7">
         <div className="flex sm:flex-row flex-col justify-between sm:items-end">
           <div className="flex flex-col">
-            <h1 className="text-black font-light text-2xl">{`${Data?.sys.country}/${SearchText}`}</h1>
-            <h1 className="text-black font-light text-xl">
+            <h1 className="text-black font-light text-2xl uppercase">{`${Data?.sys.country}/${SearchText}`}</h1>
+            <h1 className="text-black font-light text-xl capitalize">
               {`${Data?.weather[0].description}`}
             </h1>
           </div>
