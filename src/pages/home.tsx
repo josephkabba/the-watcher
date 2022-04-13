@@ -194,9 +194,6 @@ export default function Home({ local, global }: Props) {
               </div>
               <div>
                 <Image
-                  loader={() =>
-                    `http://openweathermap.org/img/wn/${Data?.weather[0].icon}@2x.png`
-                  }
                   src={`http://openweathermap.org/img/wn/${Data?.weather[0].icon}@2x.png`}
                   alt={"icon"}
                   width={100}

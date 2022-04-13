@@ -10,6 +10,9 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    domains: ["openweathermap.org"],
+  },
 };
 
 module.exports = nextConfig;
