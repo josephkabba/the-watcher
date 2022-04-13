@@ -72,13 +72,19 @@ export async function getStaticPaths() {
 
   const response = await axios.request(options);
 
-  const paths = response.data.data.map((item: any) => ({
-    params: { id: `${item.id}` },
-  }));
+  const paths = response.data.data.map((item: any) => {
+    if (item.id !== null && item.id !== undefined) {
+      return { params: { id: item.id } };
+    }
+
+    return {
+      params: { id: "0" },
+    };
+  });
 
   return {
     paths: paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
