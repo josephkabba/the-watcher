@@ -94,7 +94,7 @@ export default function Home({ local, global }: Props) {
           Lateset global news
         </h1>
 
-        <div className="flex sm:flex-row flex-col justify-between mt-9">
+        <div className="flex sm:flex-row sm:justify-between justify-center flex-col w-full mt-9">
           {global.map((item) => (
             <Card key={item.id} article={item} />
           ))}
@@ -104,7 +104,7 @@ export default function Home({ local, global }: Props) {
           Lateset local news
         </h1>
 
-        <div className="flex sm:flex-row flex-col justify-between mt-9">
+        <div className="flex sm:flex-row flex-col sm:justify-between justify-center w-full mt-9">
           {local.map((item) => (
             <Card key={item.id} article={item} />
           ))}
@@ -164,7 +164,7 @@ export default function Home({ local, global }: Props) {
         </div>
 
         <div className="flex sm:flex-row w-full justify-between pt-7 flex-col">
-          <div className="flex flex-col w-full p-4 border border-black rounded-md">
+          <div className="flex flex-col w-full p-4 border sm:justify-between justify-center border-black rounded-md">
             <div className="flex flex-col justify-between sm:flex-row">
               <div>
                 <h1 className="text text-3xl font-bold">Highs</h1>

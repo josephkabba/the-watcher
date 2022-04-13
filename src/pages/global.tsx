@@ -39,7 +39,7 @@ export default function GobalNews({ articles }: Props): JSX.Element {
   }, [router.query.slug]);
 
   return (
-    <div className="flex flex-col pt-12">
+    <div className="flex flex-col sm:justify-between justify-center pt-12">
       <hr className="bg-gray-400 h-0.5" />
       <svg
         xmlns="http://www.w3.org/2000/svg"
