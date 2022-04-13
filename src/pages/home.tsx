@@ -89,7 +89,7 @@ export default function Home({ local, global }: Props) {
 
       <hr className="bg-gray-400 h-0.5" />
 
-      <div className="flex flex-col justify-start py-10">
+      <div className="flex flex-col sm:justify-between justify-center w-full py-10">
         <h1 className="text-black font-light text-xl w-96 mt-10">
           Lateset global news
         </h1>

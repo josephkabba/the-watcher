@@ -3,7 +3,7 @@ export default function Footer() {
     <div className="flex flex-col sm:pl-32 sm:pr-24 pl-2 pr-2 sm:max-h-40 w-full text-black font-light text-xl pt-14">
       <hr className="bg-gray-400 h-0.5" />
 
-      <div className="flex flex-col mt-2 sm:flex-row justify-between place-content-between w-full">
+      <div className="flex flex-col mt-2 sm:flex-row justify-center sm:justify-between place-content-between w-full">
         <div className="flex flex-col">
           <span>This site is by group 2</span>
           <span>All right received</span>

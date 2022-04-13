@@ -88,7 +88,7 @@ export default function LocalNews({ articles }: Props): JSX.Element {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-1 sm:grid-cols-4 mt-9">
+      <div className="grid grid-cols-1 justify-items-center gap-1 sm:grid-cols-4 mt-9">
         {Articles.map((item) => (
           <Card key={item.id} article={item} />
         ))}
