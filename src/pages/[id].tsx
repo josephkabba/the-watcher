@@ -74,7 +74,7 @@ export async function getStaticPaths() {
 
   const paths = response.data.data.map((item: any) => {
     if (item.id !== null && item.id !== undefined) {
-      return { params: { id: item.id } };
+      return { params: { id: `${item.id}` } };
     }
 
     return {
