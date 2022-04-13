@@ -12,7 +12,7 @@ export default function Layout({ ChildLayout }: Props): JSX.Element {
     <div className="w-full h-full mb-16">
       <div className="w-full">
         <NavBar links={navItems} />
-        <div className="pl-32 pr-24">{ChildLayout}</div>
+        <div className="sm:pl-32 sm:pr-24 pl-2 pr-2">{ChildLayout}</div>
       </div>
       <Footer />
     </div>

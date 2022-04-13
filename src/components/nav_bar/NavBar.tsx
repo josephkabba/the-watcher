@@ -7,10 +7,10 @@ interface Props {
 
 export default function NavBar({ links }: Props): JSX.Element {
   return (
-    <div className="flex justify-between items-end w-full p-5">
+    <div className="flex sm:flex-row flex-col justify-between items-end w-full p-5">
       <h1 className="text-2xl">The Watcher</h1>
 
-      <div>
+      <div className="pt-5 sm:pt-0">
         {links.map(({ name, route, metaData }) => {
           return (
             <Link
