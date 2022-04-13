@@ -66,7 +66,7 @@ export default function Home({ local, global }: Props) {
   }, [router.query.key]);
   return (
     <>
-      <div className="flex sm:flex-row flex-col sm:text-left text-center justify-between pb-5 pt-2 w-full">
+      <div className="flex sm:flex-row flex-col sm:text-left text-center sm:justify-between justify-center pb-5 pt-2 w-full">
         <div className="flex flex-col">
           <div>
             <h1 className="text-black pt-14 font-medium text-3xl">
@@ -89,7 +89,7 @@ export default function Home({ local, global }: Props) {
 
       <hr className="bg-gray-400 h-0.5" />
 
-      <div className="flex flex-col sm:justify-between justify-center w-full py-10">
+      <div className="flex flex-col w-full py-10">
         <h1 className="text-black font-light text-xl w-96 mt-10">
           Lateset global news
         </h1>
