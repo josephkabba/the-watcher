@@ -33,7 +33,7 @@ export class ArticleModel {
   type?: string;
 
   @Column({
-    length: 100,
+    length: 10000,
     nullable: true,
   })
   author?: string;
