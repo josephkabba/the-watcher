@@ -20,16 +20,13 @@ type Props = {
 export default function Home({ local, global }: Props) {
   const router = useRouter();
   const [SearchText, setSearchText] = useState("kampala");
-  const [LoadingData, setLoading] = useState(false);
   const [Data, setData] = useState<WeatherRootObject>();
   const [Date, setDate] = useState("");
 
   const search = async (text: string) => {
-    setLoading(true);
-
     try {
       if (text.length > 0) {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${text.toLowerCase()}&appid=fac5fe60c6bbe2986282fefe5b9b8959`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${text.toLowerCase()}&units=metric&appid=fac5fe60c6bbe2986282fefe5b9b8959`;
         const response = await axios.get<
           any,
           AxiosResponse<WeatherRootObject, any>,
@@ -42,8 +39,6 @@ export default function Home({ local, global }: Props) {
         setData(response.data);
       }
     } catch (err: any) {}
-
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -60,7 +55,6 @@ export default function Home({ local, global }: Props) {
   }, [SearchText]);
 
   useEffect(() => {
-    console.log(router.query);
     if (router.query.key === "weather") {
       const scrollToId = document.getElementById(id)!!.offsetTop;
       window.scrollTo({
@@ -169,12 +163,52 @@ export default function Home({ local, global }: Props) {
           <h1 className="text-black font-light text-xl">{Date}</h1>
         </div>
 
-        <div className="flex sm:flex-row justify-between pt-7 flex-col">
-          <div></div>
+        <div className="flex sm:flex-row w-full justify-between pt-7 flex-col">
+          <div className="flex flex-col w-full p-4 border border-black rounded-md">
+            <div className="flex flex-col justify-between sm:flex-row">
+              <div>
+                <h1 className="text text-3xl font-bold">Highs</h1>
+                <h1 className="text text-2xl font-light">{`${Number.parseInt(
+                  `${Data?.main.temp_max}`
+                )}° C`}</h1>
+              </div>
+              <div>
+                <h1 className="text text-3xl font-bold">Lows</h1>
+                <h1 className="text text-2xl font-light">{`${Number.parseInt(
+                  `${Data?.main.temp_min}`
+                )}° C`}</h1>
+              </div>
+            </div>
 
-          <h1 className="text-black font-bold text-8xl">{`${Number.parseInt(
+            <div className="flex flex-col pt-4 justify-between sm:flex-row">
+              <div>
+                <h1 className="text text-xl font-light">{`Pressure: ${Number.parseInt(
+                  `${Data?.main.pressure}`
+                )}`}</h1>
+                <h1 className="text text-xl font-light">{`Humidity: ${Number.parseInt(
+                  `${Data?.main.humidity}`
+                )}`}</h1>
+                <h1 className="text text-xl font-light">{`Wind speed: ${Number.parseInt(
+                  `${Data?.wind.speed}`
+                )}`}</h1>
+              </div>
+              <div>
+                <Image
+                  loader={() =>
+                    `http://openweathermap.org/img/wn/${Data?.weather[0].icon}@2x.png`
+                  }
+                  src={`http://openweathermap.org/img/wn/${Data?.weather[0].icon}@2x.png`}
+                  alt={"icon"}
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </div>
+          </div>
+
+          <h1 className="text-black w-full sm:text-right sm:pt-0 pt-3 text-center font-bold text-8xl">{`${Number.parseInt(
             `${Data?.main.temp}`
-          )}° F`}</h1>
+          )}° C`}</h1>
         </div>
       </div>
     </>
