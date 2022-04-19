@@ -110,6 +110,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const articles: Article[] = response.data.data;
 
   return {
-    props: { articles, revalidate: 82800 }, // will be passed to the page component as props
+    props: { articles, revalidate: 43200 }, // will be passed to the page component as props
   };
 };
