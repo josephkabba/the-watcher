@@ -18,30 +18,30 @@ const execute = async (country: "UG" | "US", database: DataSource) => {
   }
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  try {
-    const database = await getDatabase();
-    await database
-      .getRepository(ArticleModel)
-      .createQueryBuilder("article")
-      .delete()
-      .from(ArticleModel)
-      .execute();
-    await execute("UG", database);
-    await execute("US", database);
-    await database.destroy();
-    res.status(200).send({
-      statusCode: 200,
-      response: "task complete",
-      message: "cache has been updated",
-    });
-  } catch (err: any) {
-    res.status(500).send({ statusCode: 500, err });
-  }
-}
+// export default async function handler(
+//   req: NextApiRequest,
+//   res: NextApiResponse
+// ) {
+//   try {
+//     const database = await getDatabase();
+//     await database
+//       .getRepository(ArticleModel)
+//       .createQueryBuilder("article")
+//       .delete()
+//       .from(ArticleModel)
+//       .execute();
+//     await execute("UG", database);
+//     await execute("US", database);
+//     await database.destroy();
+//     res.status(200).send({
+//       statusCode: 200,
+//       response: "task complete",
+//       message: "cache has been updated",
+//     });
+//   } catch (err: any) {
+//     res.status(500).send({ statusCode: 500, err });
+//   }
+// }
 
 // test
 
