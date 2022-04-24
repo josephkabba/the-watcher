@@ -236,5 +236,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
     global: resTwo.data.data,
   };
 
-  return { revalidate: 43200, props: props };
+  return { revalidate: 60, props: props };
 };

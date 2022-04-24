@@ -100,7 +100,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 
   const article: Article = response.data.data[0];
 
-  return { revalidate: 43200, props: { article } };
+  return { revalidate: 60, props: { article } };
 }
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
